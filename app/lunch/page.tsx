@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useWebHaptics } from 'web-haptics/react';
 import { MacMenuBar } from '@/components/MacMenuBar';
 import { LunchWheel, LunchWheelHandle } from '@/components/LunchWheel';
@@ -111,6 +112,18 @@ export default function LunchPage() {
         padding: '32px 16px 80px',
         gap: 24,
       }}>
+
+        {/* Back button */}
+        <div style={{ width: '100%', maxWidth: 530 }}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            <span
+              className="btn-aqua"
+              style={{ fontSize: 11, display: 'inline-flex', alignItems: 'center', gap: 4 }}
+            >
+              ← Back
+            </span>
+          </Link>
+        </div>
 
         {/* Title */}
         <div style={{ textAlign: 'center' }}>

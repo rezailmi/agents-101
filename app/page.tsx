@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { DeckCard } from '@/components/DeckCard';
 import ComputerWrapper from '@/components/ComputerWrapper';
 import { MacMenuBar } from '@/components/MacMenuBar';
@@ -57,6 +58,70 @@ export default function HomePage() {
           ))}
         </div>
       </main>
+
+      {/* ── Built live callout ── */}
+      <div className="px-8 pb-20 max-w-5xl mx-auto w-full">
+        <p
+          className="text-xs tracking-[0.3em] uppercase mb-4"
+          style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.2)' }}
+        >
+          Built live during this session
+        </p>
+        <Link href="/lunch" style={{ textDecoration: 'none' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 24,
+              padding: '20px 28px',
+              background: '#0f0f0f',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 12,
+              cursor: 'pointer',
+              transition: 'border-color 0.2s, background 0.2s',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,214,0,0.3)';
+              (e.currentTarget as HTMLDivElement).style.background = '#141208';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)';
+              (e.currentTarget as HTMLDivElement).style.background = '#0f0f0f';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+              <span style={{ fontSize: 36, lineHeight: 1 }}>🎡</span>
+              <div>
+                <p style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 22,
+                  fontStyle: 'italic',
+                  color: '#fff',
+                  margin: '0 0 4px',
+                  lineHeight: 1,
+                }}>
+                  Lunch Wheel
+                </p>
+                <p style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  color: 'rgba(255,255,255,0.4)',
+                  margin: 0,
+                }}>
+                  Built in this session — a spinning wheel for deciding where to eat, with haptic feedback and confetti.
+                </p>
+              </div>
+            </div>
+            <span
+              className="btn-aqua"
+              style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
+            >
+              Try it →
+            </span>
+          </div>
+        </Link>
+      </div>
 
       {/* ── Animation Controls ── */}
       <AsciiControls config={asciiConfig} onChange={setAsciiConfig} />
