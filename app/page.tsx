@@ -30,17 +30,10 @@ export default function HomePage() {
         />
 
         <p
-          className="text-xs tracking-[0.3em] uppercase mb-6"
+          className="text-xs tracking-[0.3em] uppercase mb-16"
           style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.7)' }}
         >
-          Four volumes
-        </p>
-
-        <p
-          className="text-sm mb-16 max-w-sm leading-relaxed"
-          style={{ fontFamily: 'var(--font-sans)', color: 'rgba(255,255,255,0.45)' }}
-        >
-          Git, prompting, skills, and agentic agents — for designers.
+          Four folders
         </p>
 
         {/* Computer */}
@@ -62,7 +55,7 @@ export default function HomePage() {
           className="text-xs tracking-[0.3em] uppercase mb-10"
           style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.7)' }}
         >
-          Volumes
+          Folders
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {decks.map((deck, i) => (

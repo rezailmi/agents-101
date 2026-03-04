@@ -25,8 +25,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'On Claude — A Compendium',
-  description: 'Four volumes on the practice of working with artificial intelligence.',
+  title: 'Designing with Claude (Code) Computer',
+  description: 'Four folders on designing with Claude — for designers.',
 };
 
 export default function RootLayout({

@@ -18,18 +18,18 @@ type MenuItem = {
 type MenuEntry = Separator | MenuItem;
 
 const MENUS: Record<string, MenuEntry[]> = {
-  'On Claude': [
-    { label: 'About On Claude', disabled: true },
+  'Designing with Claude (Code) Computer': [
+    { label: 'About This App', disabled: true },
     { type: 'separator' },
-    { label: 'Hide On Claude', shortcut: '⌘H', disabled: true },
+    { label: 'Hide', shortcut: '⌘H', disabled: true },
     { type: 'separator' },
-    { label: 'Quit On Claude', shortcut: '⌘Q', disabled: true },
+    { label: 'Quit', shortcut: '⌘Q', disabled: true },
   ],
   File: [
-    { label: 'Vol. I — Git', href: '/deck/git', shortcut: '⌘1' },
-    { label: 'Vol. II — Prompting', href: '/deck/prompting', shortcut: '⌘2' },
-    { label: 'Vol. III — Skills', href: '/deck/skills', shortcut: '⌘3' },
-    { label: 'Vol. IV — Agents', href: '/deck/agents', shortcut: '⌘4' },
+    { label: 'Folder 1 — Understanding the material', href: '/deck/material', shortcut: '⌘1' },
+    { label: 'Folder 2 — To design is to talk', href: '/deck/intent', shortcut: '⌘2' },
+    { label: 'Folder 3 — How I AI', href: '/deck/how-i-ai', shortcut: '⌘3' },
+    { label: 'Folder 4 — Designing with Agents 101', href: '/deck/agents-101', shortcut: '⌘4' },
     { type: 'separator' },
     { label: 'Close Window', shortcut: '⌘W', disabled: true },
   ],
@@ -54,19 +54,19 @@ const MENUS: Record<string, MenuEntry[]> = {
   Go: [
     { label: 'Home', href: '/', shortcut: '⌘↑' },
     { type: 'separator' },
-    { label: 'Vol. I — Git', href: '/deck/git' },
-    { label: 'Vol. II — Prompting', href: '/deck/prompting' },
-    { label: 'Vol. III — Skills', href: '/deck/skills' },
-    { label: 'Vol. IV — Agents', href: '/deck/agents' },
+    { label: 'Folder 1 — Understanding the material', href: '/deck/material' },
+    { label: 'Folder 2 — To design is to talk', href: '/deck/intent' },
+    { label: 'Folder 3 — How I AI', href: '/deck/how-i-ai' },
+    { label: 'Folder 4 — Designing with Agents 101', href: '/deck/agents-101' },
   ],
   Window: [
     { label: 'Minimize', shortcut: '⌘M', disabled: true },
     { label: 'Zoom', disabled: true },
     { type: 'separator' },
-    { label: 'On Claude', checked: true, disabled: true },
+    { label: 'Designing with Claude (Code) Computer', checked: true, disabled: true },
   ],
   Help: [
-    { label: 'On Claude Help', disabled: true },
+    { label: 'App Help', disabled: true },
     { type: 'separator' },
     { label: 'Built with Claude Code', disabled: true },
   ],
@@ -275,7 +275,7 @@ export function MacMenuBar() {
       {/* Menu items */}
       {MENU_NAMES.map((name) => {
         const isOpen = openMenu === name;
-        const isBold = name === 'On Claude';
+        const isBold = name === 'Designing with Claude (Code) Computer';
 
         return (
           <div

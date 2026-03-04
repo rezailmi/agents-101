@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import type { Deck } from '@/lib/types';
 
-const NUMERALS = ['I', 'II', 'III', 'IV'];
-
 export function DeckCard({ deck, index }: { deck: Deck; index: number }) {
   return (
     <Link href={`/deck/${deck.slug}`} className="block group">
@@ -33,7 +31,7 @@ export function DeckCard({ deck, index }: { deck: Deck; index: number }) {
             className="text-xs tracking-[0.25em] uppercase"
             style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.6)' }}
           >
-            Vol. {NUMERALS[index]}
+            Folder {index + 1}
           </span>
           <span className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>→</span>
         </div>
