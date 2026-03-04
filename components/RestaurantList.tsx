@@ -26,7 +26,7 @@ export function RestaurantList({ restaurants, onChange }: Props) {
   }
 
   return (
-    <div style={{ width: '100%', maxWidth: 480 }}>
+    <div style={{ width: '100%', maxWidth: 530 }}>
       <p
         style={{
           fontFamily: 'var(--font-fun)',

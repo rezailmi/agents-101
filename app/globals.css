@@ -276,6 +276,11 @@ body::after {
   to   { transform: translateX(-50%) rotate(10deg); }
 }
 
+@keyframes svgPointerTick {
+  from { transform: rotate(-10deg); }
+  to   { transform: rotate(10deg); }
+}
+
 @keyframes confettiBurst {
   0%   { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
   100% { opacity: 0; transform: translate(var(--cx, 0), var(--cy, 0)) rotate(var(--cr, 360deg)) scale(0.5); }

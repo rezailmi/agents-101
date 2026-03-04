@@ -109,12 +109,14 @@ export default function LunchPage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '32px 16px 80px',
-        gap: 24,
+        padding: 'clamp(16px, 5vw, 32px) clamp(12px, 4vw, 24px) 80px',
+        gap: 20,
+        boxSizing: 'border-box',
+        width: '100%',
       }}>
 
         {/* Back button */}
-        <div style={{ width: '100%', maxWidth: 530 }}>
+        <div style={{ width: '100%', maxWidth: 530, alignSelf: 'center' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <span
               className="btn-aqua"
@@ -129,7 +131,7 @@ export default function LunchPage() {
         <div style={{ textAlign: 'center' }}>
           <h1 style={{
             fontFamily: 'var(--font-fun)',
-            fontSize: 52,
+            fontSize: 'clamp(32px, 10vw, 52px)',
             fontWeight: 700,
             color: '#FFD600',
             margin: 0,
@@ -160,12 +162,15 @@ export default function LunchPage() {
           <div
             style={{
               textAlign: 'center',
-              padding: '28px 56px',
+              padding: 'clamp(16px, 5vw, 28px) clamp(20px, 8vw, 56px)',
               background: 'linear-gradient(135deg, #1a0a00, #2a1200)',
               border: '3px solid #FFD600',
               borderRadius: 20,
               boxShadow: '0 0 0 6px rgba(255,214,0,0.1), 0 20px 60px rgba(0,0,0,0.5)',
               animation: 'winnerPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both',
+              width: '100%',
+              maxWidth: 480,
+              boxSizing: 'border-box',
             }}
           >
             <p style={{
@@ -180,12 +185,13 @@ export default function LunchPage() {
             </p>
             <p style={{
               fontFamily: 'var(--font-fun)',
-              fontSize: 56,
+              fontSize: 'clamp(36px, 12vw, 56px)',
               fontWeight: 700,
               color: '#FFD600',
               margin: '0 0 20px',
               lineHeight: 1.1,
               textShadow: '3px 3px 0 #FF3B5C',
+              wordBreak: 'break-word',
             }}>
               {winner}
             </p>
@@ -257,10 +263,10 @@ export default function LunchPage() {
 
         {/* Divider */}
         <div style={{
-          width: '100%', maxWidth: 480,
+          width: '100%', maxWidth: 530,
           height: 2,
           background: 'linear-gradient(90deg, transparent, rgba(255,214,0,0.2), transparent)',
-          margin: '8px 0',
+          margin: '4px 0',
         }} />
 
         {/* Restaurant list */}

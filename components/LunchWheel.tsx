@@ -2,7 +2,6 @@
 
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
-/* Vivid carnival palette — bg color + text color per slice */
 const SLICES = [
   { fill: '#FF3B5C', text: '#fff' },
   { fill: '#FFD600', text: '#111' },
@@ -32,7 +31,10 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
     const finalRotRef = useRef(0);
 
     const n = restaurants.length;
-    const CX = 265, CY = 265, R = 195;
+    // Wheel geometry — pointer is embedded in SVG above the wheel
+    const CX = 265, CY = 285, R = 195;
+    // viewBox shows 30px above y=0 to accommodate the pointer
+    const VB = '0 -28 530 600';
 
     useImperativeHandle(ref, () => ({
       spin() {
@@ -76,11 +78,11 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
     if (n === 0) {
       return (
         <div style={{
-          width: 530, height: 530,
+          width: '100%', maxWidth: 530, aspectRatio: '530 / 600',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           border: '3px dashed rgba(255,214,0,0.3)', borderRadius: '50%',
         }}>
-          <p style={{ fontFamily: 'var(--font-fun)', fontSize: 16, color: 'rgba(255,255,255,0.4)' }}>
+          <p style={{ fontFamily: 'var(--font-fun)', fontSize: 'clamp(13px, 4vw, 16px)', color: 'rgba(255,255,255,0.4)' }}>
             Add restaurants below!
           </p>
         </div>
@@ -92,55 +94,47 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
     const maxChars = n > 8 ? 8 : n > 5 ? 10 : 14;
     const pegCount = 40;
 
-    return (
-      <div style={{ position: 'relative', width: 530, height: 560, flexShrink: 0 }}>
-        {/* Pointer — golden arrow with red pivot pin */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            transformOrigin: '50% 14px',
-            zIndex: 20,
-            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.6))',
-            animation: spinning
-              ? 'pointerTick 0.11s ease-in-out infinite alternate'
-              : 'none',
-          }}
-        >
-          <svg width="36" height="56" viewBox="-18 -4 36 56">
-            {/* Shaft */}
-            <rect x="-5" y="10" width="10" height="24" rx="3" fill="#FFD600" stroke="#C4A000" strokeWidth="1.5" />
-            {/* Arrowhead */}
-            <polygon points="0,50 -13,14 13,14" fill="#FFD600" stroke="#C4A000" strokeWidth="1.5" strokeLinejoin="round" />
-            {/* Highlight on arrowhead */}
-            <polygon points="0,44 -7,18 7,18" fill="rgba(255,255,255,0.25)" />
-            {/* Pivot circle */}
-            <circle cx="0" cy="4" r="12" fill="#FF3B5C" stroke="#8B0000" strokeWidth="2" />
-            <circle cx="0" cy="4" r="6" fill="#FF8FAB" />
-          </svg>
-        </div>
+    // Pointer tip should be just inside the outer rim top
+    const rimTop = CY - (R + 36); // y-coordinate of outer rim top
+    const ptrGroupY = rimTop - 50 + 4; // shift so tip lands at rimTop
 
-        <svg viewBox="0 0 530 560" width={530} height={560}>
+    return (
+      // Fluid container — fills available width up to 530px
+      <div style={{ width: '100%', maxWidth: 530 }}>
+        <svg
+          viewBox={VB}
+          style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
+        >
           <defs>
-            {/* Warm rim gradient */}
             <radialGradient id="rimGrad" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#5c2a00" />
               <stop offset="100%" stopColor="#2a1000" />
             </radialGradient>
-            {/* Subtle gloss overlay on slices */}
             <radialGradient id="sliceGloss" cx="50%" cy="50%" r="70%">
               <stop offset="0%" stopColor="rgba(255,255,255,0)" />
               <stop offset="100%" stopColor="rgba(255,255,255,0.07)" />
             </radialGradient>
-            <filter id="wheelGlow" x="-10%" y="-10%" width="120%" height="120%">
-              <feGaussianBlur stdDeviation="6" result="blur" />
-              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-            </filter>
           </defs>
 
-          {/* Outermost wooden rim */}
+          {/* Pointer — embedded in SVG so it scales with the wheel */}
+          <g transform={`translate(${CX}, ${ptrGroupY})`}>
+            <g
+              style={{
+                transformOrigin: '0px 4px',
+                animation: spinning
+                  ? 'svgPointerTick 0.11s ease-in-out infinite alternate'
+                  : 'none',
+              }}
+            >
+              <rect x="-5" y="10" width="10" height="24" rx="3" fill="#FFD600" stroke="#C4A000" strokeWidth="1.5" />
+              <polygon points="0,50 -13,14 13,14" fill="#FFD600" stroke="#C4A000" strokeWidth="1.5" strokeLinejoin="round" />
+              <polygon points="0,44 -7,18 7,18" fill="rgba(255,255,255,0.25)" />
+              <circle cx="0" cy="4" r="12" fill="#FF3B5C" stroke="#8B0000" strokeWidth="2" />
+              <circle cx="0" cy="4" r="6" fill="#FF8FAB" />
+            </g>
+          </g>
+
+          {/* Wooden outer rim */}
           <circle cx={CX} cy={CY} r={R + 36} fill="url(#rimGrad)" stroke="#8B4513" strokeWidth="3" />
           {/* Gold trim ring */}
           <circle cx={CX} cy={CY} r={R + 26} fill="none" stroke="#FFD600" strokeWidth="4" />
@@ -158,7 +152,6 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
             }}
             onTransitionEnd={handleTransitionEnd}
           >
-            {/* Slices */}
             {restaurants.map((name, i) => {
               const { fill, text } = SLICES[i % SLICES.length];
               const midAngle = (i + 0.5) * sliceAngle;
@@ -169,7 +162,6 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
               return (
                 <g key={i}>
                   <path d={slicePath(i)} fill={fill} stroke="rgba(0,0,0,0.2)" strokeWidth={2} />
-                  {/* Subtle gloss */}
                   <path d={slicePath(i)} fill="url(#sliceGloss)" style={{ pointerEvents: 'none' }} />
                   <text
                     x={textPos.x}
@@ -189,41 +181,34 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
               );
             })}
 
-            {/* Peg dots around the rim — on the rotating group so they look structural */}
+            {/* Pegs */}
             {Array.from({ length: pegCount }, (_, i) => {
               const { x, y } = polarToCart((i / pegCount) * 360, R + 10);
-              const isGold = i % 2 === 0;
               return (
                 <circle
                   key={`peg-${i}`}
                   cx={x} cy={y} r={5.5}
-                  fill={isGold ? '#FFD600' : '#ffffff'}
-                  stroke="rgba(0,0,0,0.35)"
-                  strokeWidth={1}
+                  fill={i % 2 === 0 ? '#FFD600' : '#ffffff'}
+                  stroke="rgba(0,0,0,0.35)" strokeWidth={1}
                 />
               );
             })}
 
-            {/* Center hub starburst */}
+            {/* Center hub */}
             {Array.from({ length: 8 }, (_, i) => {
               const a = (i / 8) * 360;
               const inner = polarToCart(a, 18);
               const outer = polarToCart(a, 34);
               return (
-                <line
-                  key={`spoke-${i}`}
-                  x1={inner.x} y1={inner.y}
-                  x2={outer.x} y2={outer.y}
-                  stroke="#FFD600" strokeWidth={2.5} strokeLinecap="round"
-                />
+                <line key={`spoke-${i}`} x1={inner.x} y1={inner.y} x2={outer.x} y2={outer.y}
+                  stroke="#FFD600" strokeWidth={2.5} strokeLinecap="round" />
               );
             })}
             <circle cx={CX} cy={CY} r={28} fill="#FF3B5C" stroke="#8B0000" strokeWidth="3" />
             <circle cx={CX} cy={CY} r={14} fill="#FFD600" stroke="#C4A000" strokeWidth="1.5" />
-            <circle cx={CX} cy={CY} r={6}  fill="#fff" />
+            <circle cx={CX} cy={CY} r={6} fill="#fff" />
           </g>
 
-          {/* Fixed outer gold ring (non-rotating) */}
           <circle cx={CX} cy={CY} r={R + 3} fill="none" stroke="rgba(0,0,0,0.4)" strokeWidth={2} />
         </svg>
       </div>
