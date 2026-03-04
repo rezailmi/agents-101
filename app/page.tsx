@@ -14,7 +14,7 @@ export default function HomePage() {
   const [asciiConfig, setAsciiConfig] = useState<AsciiConfig>(DEFAULT_ASCII_CONFIG);
 
   return (
-    <div className="min-h-screen" style={{ background: '#010101' }}>
+    <div className="min-h-screen" style={{ background: '#010101', overflowX: 'hidden' }}>
 
       {/* ── Mac OS X Menu Bar ── */}
       <MacMenuBar />
