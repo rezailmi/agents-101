@@ -1,65 +1,97 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useState } from 'react';
+import { DeckCard } from '@/components/DeckCard';
+import ComputerWrapper from '@/components/ComputerWrapper';
+import { MacMenuBar } from '@/components/MacMenuBar';
+import { AsciiClaude, DEFAULT_ASCII_CONFIG } from '@/components/AsciiClaude';
+import type { AsciiConfig } from '@/components/AsciiClaude';
+import { AsciiControls } from '@/components/AsciiControls';
+import { decks } from '@/data/decks';
+
+export default function HomePage() {
+  const [asciiConfig, setAsciiConfig] = useState<AsciiConfig>(DEFAULT_ASCII_CONFIG);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen" style={{ background: '#010101' }}>
+
+      {/* ── Mac OS X Menu Bar ── */}
+      <MacMenuBar />
+
+      {/* ── Hero ── */}
+      <header className="relative flex flex-col items-center pt-24 pb-8 px-8 text-center overflow-hidden">
+        {/* Radial cyan glow behind computer */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 70% 55% at 50% 65%, rgba(106,171,242,0.09) 0%, transparent 70%)',
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        <p
+          className="text-xs tracking-[0.3em] uppercase mb-6"
+          style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.7)' }}
+        >
+          Four volumes
+        </p>
+
+        <p
+          className="text-sm mb-16 max-w-sm leading-relaxed"
+          style={{ fontFamily: 'var(--font-sans)', color: 'rgba(255,255,255,0.45)' }}
+        >
+          Git, prompting, skills, and agentic agents — for designers.
+        </p>
+
+        {/* Computer */}
+        <div className="relative w-full max-w-3xl">
+          <ComputerWrapper title="Claude" progress={0}>
+            <AsciiClaude config={asciiConfig} />
+          </ComputerWrapper>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* ── Divider ── */}
+      <div className="relative py-20 px-8">
+        <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)' }} />
+      </div>
+
+      {/* ── Decks ── */}
+      <main className="px-8 pb-32 max-w-5xl mx-auto w-full">
+        <p
+          className="text-xs tracking-[0.3em] uppercase mb-10"
+          style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.7)' }}
+        >
+          Volumes
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {decks.map((deck, i) => (
+            <DeckCard key={deck.slug} deck={deck} index={i} />
+          ))}
         </div>
       </main>
+
+      {/* ── Animation Controls ── */}
+      <AsciiControls config={asciiConfig} onChange={setAsciiConfig} />
+
+      {/* ── Footer ── */}
+      <footer
+        className="flex items-center justify-between px-8 py-6"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <span
+          className="text-xs"
+          style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.25)' }}
+        >
+          Use ← → to navigate · Esc to return
+        </span>
+        <span
+          className="text-xs"
+          style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.5)' }}
+        >
+          Claude
+        </span>
+      </footer>
     </div>
   );
 }
