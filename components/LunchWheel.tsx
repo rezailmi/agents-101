@@ -103,7 +103,7 @@ export const LunchWheel = forwardRef<LunchWheelHandle, Props>(
       <div style={{ width: '100%', maxWidth: 530 }}>
         <svg
           viewBox={VB}
-          style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
+          style={{ width: '100%', height: 'auto', display: 'block' }}
         >
           <defs>
             <radialGradient id="rimGrad" cx="50%" cy="50%" r="50%">

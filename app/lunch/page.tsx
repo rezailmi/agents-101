@@ -100,7 +100,7 @@ export default function LunchPage() {
   const canSpin = !spinning && restaurants.length >= 2;
 
   return (
-    <div style={{ background: '#0d0805', minHeight: '100vh' }}>
+    <div style={{ background: '#0d0805', minHeight: '100vh', overflowX: 'hidden' }}>
       <MacMenuBar />
 
       {showConfetti && <Confetti />}

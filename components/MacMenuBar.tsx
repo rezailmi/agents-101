@@ -103,7 +103,7 @@ function Dropdown({
         position: 'absolute',
         top: 'calc(100% + 1px)',
         left: 0,
-        minWidth: 220,
+        minWidth: 320,
         background: 'rgba(240,240,240,0.97)',
         border: '1px solid rgba(0,0,0,0.25)',
         borderRadius: 5,
@@ -185,7 +185,7 @@ function DropdownItem({
       </span>
 
       {/* Label */}
-      <span style={{ fontSize: 13, flex: 1 }}>{item.label}</span>
+      <span style={{ fontSize: 13, flex: 1, whiteSpace: 'nowrap' }}>{item.label}</span>
 
       {/* Shortcut */}
       {item.shortcut && (
