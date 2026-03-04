@@ -29,12 +29,6 @@ export default function HomePage() {
           }}
         />
 
-        <p
-          className="text-xs tracking-[0.3em] uppercase mb-16"
-          style={{ fontFamily: 'var(--font-mono)', color: 'rgba(106,171,242,0.7)' }}
-        >
-          Four folders
-        </p>
 
         {/* Computer */}
         <div className="relative w-full max-w-3xl">

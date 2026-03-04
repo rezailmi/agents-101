@@ -160,56 +160,71 @@ export const decks: Deck[] = [
   {
     slug: 'agents-101',
     title: 'Designing with Agents 101',
-    subtitle: 'How to start',
-    description: 'Installing Claude, setting up the stack, and understanding GitHub — explained like it\'s a Figma file.',
+    subtitle: 'Step by step',
+    description: 'Install Claude Code, connect GitHub, commit, push, open a PR — each step explained in plain English with the exact words to use.',
     accent: '#6B4E7A',
     slides: [
       {
         type: 'title',
         headline: 'Designing with\nAgents 101',
-        body: 'The hardest part is starting. Here\'s exactly how to get set up — and how to think about the tools.',
+        body: 'No assumed knowledge. No jargon. Follow these steps and you\'ll be set up and shipping in under 15 minutes.',
       },
       {
         type: 'concept',
-        headline: 'Start with Claude Code',
-        body: 'Claude Code is how you talk to Claude from your terminal — your computer\'s command line. Install it once, and it\'s available everywhere. From there, you can ask Claude to set up everything else.',
+        headline: 'Step 1 — Install Claude Code',
+        body: 'Go to claude.ai and download Claude Code — it installs like any Mac app. Once it\'s open, you\'ll see a terminal window. That\'s where you talk to Claude. You\'re not writing code. You\'re having a conversation.',
       },
       {
         type: 'list',
-        headline: 'Ask Claude to install the stack',
+        headline: 'Step 2 — Set up your tools',
         items: [
-          'Homebrew — your Mac\'s package manager (think: App Store for developer tools)',
-          'gh — GitHub\'s command-line tool, for working with repos without leaving the terminal',
-          'Node.js — the runtime that powers most web apps and tools',
-          'Just ask Claude: "install homebrew, gh, and node on my mac"',
+          'Once Claude Code is open, say: "I\'m on a Mac and new to this. Install everything I need to build web projects — homebrew, node, and the GitHub CLI."',
+          'Claude will walk you through each step and ask if anything needs your input',
+          'You\'ll need a GitHub account — it\'s free at github.com',
+          'This only needs to happen once. After this, you\'re fully set up.',
         ],
       },
       {
         type: 'concept',
-        headline: 'GitHub is just Figma for code',
-        body: 'If you\'ve used Figma, you already understand GitHub. The concepts map almost perfectly — you just need to learn the names.',
-      },
-      {
-        type: 'two-col',
-        headline: 'Figma → GitHub',
-        left: {
-          heading: 'In Figma',
-          body: 'Published file\nDraft / branch\nShare for feedback\nVersion history\nAuto-save',
-        },
-        right: {
-          heading: 'In GitHub',
-          body: 'Main branch\nFeature branch\nPull request\nCommit history\nGit commit',
-        },
+        headline: 'Step 3 — Connect your project to GitHub',
+        body: 'Open Claude Code in the folder you\'re working in. Then say: "Set up git on this project, create a new GitHub repo, and push everything up." Claude handles all of it — you get a link to your project online, backed up and version-controlled.',
       },
       {
         type: 'concept',
-        headline: 'Let Claude do the technical parts',
-        body: 'Once you\'re set up, you don\'t need to remember commands. Just talk to Claude. "Commit my changes," "create a new branch," "open a pull request." You stay in the design headspace. Claude handles the mechanics.',
+        headline: 'Commit = save a named version',
+        body: 'In Figma, you create version history when you want to mark a moment. A commit is the same thing — a named snapshot of everything right now. Say to Claude: "Commit my changes with a message describing what I just did." That\'s the whole thing.',
+      },
+      {
+        type: 'concept',
+        headline: 'Push = sync it to the cloud',
+        body: 'A commit saves locally on your machine. A push sends it up to GitHub. Think of publishing a Figma file — your local draft becomes the live version. Say to Claude: "Push my changes to GitHub."',
+      },
+      {
+        type: 'two-col',
+        headline: 'Pull Request = share for review',
+        left: {
+          heading: 'In Figma',
+          body: 'You share a branch link with a teammate. They review your changes and approve them before they\'re merged into the main file.',
+        },
+        right: {
+          heading: 'In GitHub',
+          body: 'You open a pull request — same idea. It shows what changed, lets someone review it, and merges it when approved. Say: "Create a pull request."',
+        },
+      },
+      {
+        type: 'list',
+        headline: 'The exact prompts to use',
+        items: [
+          '"Set up git on this project, create a GitHub repo, and push it up"',
+          '"Commit my changes — describe what I just built"',
+          '"Push to GitHub"',
+          '"Create a pull request with a summary of my changes"',
+        ],
       },
       {
         type: 'quote',
         headline: '',
-        quote: 'You don\'t need to become a developer. You need to understand the material well enough to collaborate with one — or with an agent.',
+        quote: 'You don\'t need to know the commands. You need to know what you\'re trying to do — and say it. Claude handles the rest.',
         attribution: 'On getting started',
       },
     ],

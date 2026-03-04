@@ -1,13 +1,22 @@
 import type { Metadata } from 'next';
-import { Instrument_Serif } from 'next/font/google';
+import { Instrument_Serif, Fredoka } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
+import Script from 'next/script'
+import { DirectEdit } from 'made-refine'
 
 const instrumentSerif = Instrument_Serif({
   variable: '--font-display',
   subsets: ['latin'],
   weight: ['400'],
   style: ['normal', 'italic'],
+  display: 'swap',
+});
+
+const fredoka = Fredoka({
+  variable: '--font-fun',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
@@ -37,9 +46,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable}`}
+      className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} ${fredoka.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        {process.env.NODE_ENV === 'development' && <DirectEdit />}
+      </body>
     </html>
   );
 }

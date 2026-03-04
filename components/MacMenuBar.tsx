@@ -58,6 +58,8 @@ const MENUS: Record<string, MenuEntry[]> = {
     { label: 'Folder 2 — To design is to talk', href: '/deck/intent' },
     { label: 'Folder 3 — How I AI', href: '/deck/how-i-ai' },
     { label: 'Folder 4 — Designing with Agents 101', href: '/deck/agents-101' },
+    { type: 'separator' },
+    { label: 'Lunch Wheel', href: '/lunch' },
   ],
   Window: [
     { label: 'Minimize', shortcut: '⌘M', disabled: true },
