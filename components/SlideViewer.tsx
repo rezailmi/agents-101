@@ -329,6 +329,18 @@ export default function SlideViewer({ deck }: { deck: Deck }) {
         </p>
       </header>
 
+      {/* Progress bar */}
+      <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)' }}>
+        <div
+          style={{
+            height: '100%',
+            width: `${((index + 1) / deck.slides.length) * 100}%`,
+            background: '#6aabf2',
+            transition: 'width 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        />
+      </div>
+
       {/* Slide */}
       <main className="flex-1 overflow-hidden relative">
         {/* Subtle radial glow */}
