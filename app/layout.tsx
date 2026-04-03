@@ -3,7 +3,6 @@ import { Instrument_Serif, Fredoka } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import Script from 'next/script'
-import { DirectEdit } from 'made-refine'
 
 const instrumentSerif = Instrument_Serif({
   variable: '--font-display',
@@ -50,7 +49,6 @@ export default function RootLayout({
     >
       <body className="antialiased">
         {children}
-        {process.env.NODE_ENV === 'development' && <DirectEdit />}
       </body>
     </html>
   );
