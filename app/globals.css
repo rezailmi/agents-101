@@ -142,40 +142,44 @@ body::after {
   cursor: pointer;
   color: #fff;
   font-family: var(--font-mono);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  /* Dark navy border matching original */
-  border: 1px solid #0d3a8a;
-  /* Deep cobalt gradient: near-white-blue top → rich cobalt mid → slightly lighter bottom reflection */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  /* Dark navy border */
+  border: 1px solid #082870;
+  /* Vivid cobalt gradient */
   background: linear-gradient(
     180deg,
-    #7bbcff 0%,      /* lightest top edge */
-    #3d8ef0 18%,     /* light-blue transition */
-    #1155cc 52%,     /* deep cobalt body */
-    #0d48b8 68%,     /* darkest point */
-    #1e62d8 85%,     /* bottom lift */
-    #4a8fe8 100%     /* bottom reflection */
+    #62b4ff 0%,      /* bright top edge */
+    #1a80f5 18%,     /* vivid blue */
+    #0044cc 52%,     /* deep royal cobalt */
+    #003ab0 68%,     /* darkest body */
+    #1256d6 85%,     /* bottom lift */
+    #3d85e8 100%     /* bottom reflection */
   );
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.55),
+    0 3px 9px rgba(0, 0, 0, 0.65),
     0 1px 2px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(0, 30, 100, 0.4);
   transition: filter 0.1s ease;
   user-select: none;
 }
 
-/* Prominent white gloss — covers top 45%, fades to nothing */
+/* Classic Aqua "jelly bean" gloss — oval bubble inset from sides */
 .btn-aqua::before,
 .btn-aqua-icon::before {
   content: '';
   position: absolute;
-  inset: 0 0 55% 0;  /* top 45% of height */
+  left: 8%;
+  right: 8%;
+  top: 2px;
+  bottom: 50%;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.78) 0%,   /* near-white at very top */
-    rgba(255, 255, 255, 0.42) 45%,  /* mid highlight */
-    rgba(255, 255, 255, 0.04) 100%  /* fade out */
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.60) 38%,
+    rgba(255, 255, 255, 0.08) 100%
   );
-  border-radius: 9999px 9999px 0 0;
+  border-radius: 9999px;
   pointer-events: none;
 }
 
@@ -185,7 +189,7 @@ body::after {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  padding: 0.38rem 1.15rem;
+  padding: 0.42rem 1.25rem;
   border-radius: 9999px;
   font-size: 11px;
   letter-spacing: 0.05em;

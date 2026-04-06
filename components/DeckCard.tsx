@@ -33,7 +33,7 @@ export function DeckCard({ deck, index }: { deck: Deck; index: number }) {
           >
             Folder {index + 1}
           </span>
-          <span className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>→</span>
+          <span className="text-xs transition-transform duration-200 group-hover:translate-x-1" style={{ color: 'rgba(255,255,255,0.2)' }}>→</span>
         </div>
 
         {/* Title */}

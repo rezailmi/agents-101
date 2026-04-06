@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState } from 'react'
 import Link from 'next/link';
 import { DeckCard } from '@/components/DeckCard';
 import ComputerWrapper from '@/components/ComputerWrapper';
@@ -135,7 +135,7 @@ export default function HomePage() {
           className="text-xs"
           style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.25)' }}
         >
-          Use ← → to navigate · Esc to return
+          agents-101
         </span>
         <span
           className="text-xs"
